@@ -16,7 +16,7 @@ with open(INP_PATH) as file:
     # read updates as a list each
     updates = [list(map(int,l.split(','))) for l in updates.split()]
 
-def customSorted(update:list):
+def customSorted(update:list) -> list:
     # custom sort defined by the rules - cmp_to_key translates our rules to a key for comparison
     # sorted is a stable function! (and therefore fit for use here)
     return sorted(update, key=cmp_to_key(lambda a,b: -1 if b in rules.get(a) else 0))
@@ -25,8 +25,8 @@ def orderedUpdate(update: list) -> bool:
     # an update is sorted if the list is the same as its sorted version
     return update == customSorted(update)
 
-# sum of middle elements of already correctly sorted lists
+# part 1 answer: sum of middle elements of already correctly sorted lists
 pprint(sum(u[int(len(u)/2)] for u in updates if orderedUpdate(u)))
 
-# sum of middle elements of incorrectly sorted lists, sorted to our rules
+# part 2 answer: sum of middle elements of incorrectly sorted lists, sorted to our rules
 pprint(sum(customSorted(u)[int(len(u)/2)] for u in updates if not orderedUpdate(u)))
