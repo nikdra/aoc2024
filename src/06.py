@@ -27,7 +27,7 @@ dir_changes = {
 def distinctPositions() -> int:
     positions = set()  # positions we've visited
     pos = next(k for k,v in inp.items() if v == '^')  # starting position of the guard/current position
-    inpMap = {k:v if v != '^' else '.' for k,v in inp.items()}  # remove starting position with '.'
+    inpMap = {k:v if v != '^' else '.' for k,v in inp.items()}  # remove starting position with '.' (making a copy to be safe)
     dir = 'u'  # current direction
     while pos in inpMap.keys():  # while in bounds 
         positions.add(pos)  # add position
@@ -50,7 +50,7 @@ pprint(distinctPositions())
 def createsLoop(objectPos: tuple) -> bool:
     positions = set()  # positions we've visited
     pos = next(k for k,v in inp.items() if v == '^')  # starting position of the guard/current position
-    inpMap = {k:v if v != '^' else '.' for k,v in inp.items()}  # remove starting position with '.'
+    inpMap = {k:v if v != '^' else '.' for k,v in inp.items()}  # remove starting position with '.' (making a copy to be safe)
     inpMap[objectPos] = '#' # add obstruction
     dir = 'u'  # current direction
     while pos in inpMap.keys():  # while in bounds 
